@@ -45,6 +45,10 @@ hosted-engine --vm-status
 systemctl status -l ovirt-ha-agent
 ovirt-hosted-engine-cleanup
 
+# use virsh list with user passwd cat /etc/pki/vdsm/keys/libvirt_password
+vdsm@ovirt
+shibboleth
+
 # management ovirt-engine on hosted-engine node
 hosted-engine --set-maintenance --mode=global
 # Log in to ovirt engine vm
