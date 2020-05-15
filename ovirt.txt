@@ -19,10 +19,11 @@ systemctl restart ovirt-engine
 
 # config Self-hosted engine
 yum -y install ovirt-hosted-engine-setup
-hosted-engine --deploy
 rpm -ivh ovirt-engine-appliance-4.3-20200319.1.el7.x86_64.rpm 
+hosted-engine --deploy
+
+# access https://ip:9090 to deploy self-hosted engine with cockpit
 yum install cockpit-ovirt-dashboard
 systemctl enable cockpit.socket
 systemctl start cockpit.socket
 
-# access https://ip:9090 to deploy self-hosted engine with cockpit
