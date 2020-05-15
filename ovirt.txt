@@ -27,3 +27,6 @@ yum install cockpit-ovirt-dashboard
 systemctl enable cockpit.socket
 systemctl start cockpit.socket
 
+# on nfs share storage host; id vdsm uid 36 gid 36
+chown 36:36 /kvm/nfs
+chmod 755 /kvm/nfs
