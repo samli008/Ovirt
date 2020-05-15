@@ -1,0 +1,17 @@
+# install ovirt-engine minimal 4G memory
+tar xzvf ovirt43.tar
+cat > /etc/yum.repos.d/ovirt.repo << EOF
+[ovirt]
+name=ovirt
+baseurl=file:///root/ovirt
+enabled=1
+gpgcheck=0
+EOF
+hostnamectl set-hostname node1.sog.com
+yum -y install ovirt-engine
+engine-setup --accept-defaults
+
+# config ip access ovirt-engine
+vi /etc/ovirt-engine/engine.conf.d/11-setup-sso.conf
+SSO_ALTERNATE_ENGINE_FQDNS="192.168.6.156"
+systemctl restart ovirt-engine
