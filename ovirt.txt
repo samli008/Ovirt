@@ -30,3 +30,20 @@ systemctl start cockpit.socket
 # on nfs share storage host; id vdsm uid 36 gid 36
 chown 36:36 /kvm/nfs
 chmod 755 /kvm/nfs
+
+# management hosted-engine
+hosted-engine --console
+hosted-engine --vm-shutdown
+hosted-engine --vm-start
+systemctl status -l ovirt-ha-agent
+ovirt-hosted-engine-cleanup
+
+# management ovirt-engine on hosted-engine node
+hosted-engine --set-maintenance --mode=global
+# Log in to ovirt engine vm
+systemctl stop ovirt-engine
+engine-backup --scope=files --scope=db --mode=backup --file=file_name --log=backup_log_name
+engine-backup --mode=restore --scope=files --scope=db --file=file_name --log=restore_log_name --provision-db --no-restore-permissions
+systemctl start ovirt-engine
+# on hosted-engine node
+hosted-engine --set-maintenance --mode=none
