@@ -17,7 +17,7 @@ vi /etc/ovirt-engine/engine.conf.d/11-setup-sso.conf
 SSO_ALTERNATE_ENGINE_FQDNS="192.168.6.63"
 systemctl restart ovirt-engine
 
-# config Self-hosted engine
+# deploy Self-hosted engine using command line
 cat >> /etc/hosts << EOF
 192.168.6.61 node1.liyang.com
 192.168.6.63 engine.liyang.com
