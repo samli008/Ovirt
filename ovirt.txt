@@ -18,5 +18,5 @@ SSO_ALTERNATE_ENGINE_FQDNS="192.168.6.156"
 systemctl restart ovirt-engine
 
 # config hosted-engine
-yum install ovirt-hosted-engine-setup
+yum -y install ovirt-hosted-engine-setup
 hosted-engine --deploy
