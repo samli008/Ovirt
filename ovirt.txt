@@ -20,3 +20,4 @@ systemctl restart ovirt-engine
 # config hosted-engine
 yum -y install ovirt-hosted-engine-setup
 hosted-engine --deploy
+rpm -ivh ovirt-engine-appliance-4.3-20200319.1.el7.x86_64.rpm 
