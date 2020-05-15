@@ -14,10 +14,16 @@ engine-setup --accept-defaults
 
 # config ip access ovirt-engine
 vi /etc/ovirt-engine/engine.conf.d/11-setup-sso.conf
-SSO_ALTERNATE_ENGINE_FQDNS="192.168.6.156"
+SSO_ALTERNATE_ENGINE_FQDNS="192.168.6.63"
 systemctl restart ovirt-engine
 
 # config Self-hosted engine
+cat >> /etc/hosts << EOF
+192.168.6.61 node1.liyang.com
+192.168.6.63 engine.liyang.com
+EOF
+systemctl enable firewalld
+systemctl start firewalld
 yum -y install ovirt-hosted-engine-setup
 rpm -ivh ovirt-engine-appliance-4.3-20200319.1.el7.x86_64.rpm 
 hosted-engine --deploy
