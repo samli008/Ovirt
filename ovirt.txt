@@ -1,5 +1,5 @@
 # install ovirt-engine minimal 4G memory
-yum install http://resources.ovirt.org/pub/yum-repo/ovirt-release43.rpm
+yum -y install http://resources.ovirt.org/pub/yum-repo/ovirt-release43.rpm
 tar xzvf ovirt43.tar
 cat > /etc/yum.repos.d/ovirt.repo << EOF
 [ovirt]
