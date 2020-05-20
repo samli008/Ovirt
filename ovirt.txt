@@ -17,6 +17,13 @@ vi /etc/ovirt-engine/engine.conf.d/11-setup-sso.conf
 SSO_ALTERNATE_ENGINE_FQDNS="192.168.6.63"
 systemctl restart ovirt-engine
 
+# Installing Cockpit on Enterprise Linux hosts
+yum install cockpit-ovirt-dashboard
+systemctl enable cockpit.socket
+systemctl start cockpit.socket
+firewall-cmd --permanent --add-service=cockpit
+firewall-cmd --reload
+
 # deploy Self-hosted engine using command line
 cat >> /etc/hosts << EOF
 192.168.6.61 node1.liyang.com
@@ -32,6 +39,8 @@ hosted-engine --deploy
 yum install cockpit-ovirt-dashboard
 systemctl enable cockpit.socket
 systemctl start cockpit.socket
+firewall-cmd --permanent --add-service=cockpit
+firewall-cmd --reload
 
 # on nfs share storage host; id vdsm uid 36 gid 36
 chown 36:36 /kvm/nfs
