@@ -25,7 +25,7 @@ baseurl=file:///root/ovirt-host
 enabled=1
 gpgcheck=0
 EOF
-yum install cockpit-ovirt-dashboard
+yum -y install cockpit-ovirt-dashboard
 systemctl enable cockpit.socket
 systemctl start cockpit.socket
 firewall-cmd --permanent --add-service=cockpit
@@ -43,7 +43,7 @@ rpm -ivh ovirt-engine-appliance-4.3-20200319.1.el7.x86_64.rpm
 hosted-engine --deploy
 
 # access https://ip:9090 to deploy self-hosted engine with cockpit
-yum install cockpit-ovirt-dashboard
+yum -y install cockpit-ovirt-dashboard
 systemctl enable cockpit.socket
 systemctl start cockpit.socket
 firewall-cmd --permanent --add-service=cockpit
