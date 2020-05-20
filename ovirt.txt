@@ -1,4 +1,4 @@
-# install ovirt-engine minimal 4G memory
+# deploy standalone ovirt-engine minimal 4G memory
 yum -y install http://resources.ovirt.org/pub/yum-repo/ovirt-release43.rpm
 tar xzvf ovirt43.tar
 cat > /etc/yum.repos.d/ovirt.repo << EOF
@@ -18,6 +18,13 @@ SSO_ALTERNATE_ENGINE_FQDNS="192.168.6.63"
 systemctl restart ovirt-engine
 
 # Installing Cockpit on Enterprise Linux hosts
+tar xzvf ovirt-host.tar
+[ovirt]
+name=ovirt
+baseurl=file:///root/ovirt-host
+enabled=1
+gpgcheck=0
+EOF
 yum install cockpit-ovirt-dashboard
 systemctl enable cockpit.socket
 systemctl start cockpit.socket
