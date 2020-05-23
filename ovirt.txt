@@ -19,6 +19,7 @@ systemctl restart ovirt-engine
 
 # Installing Cockpit on Enterprise Linux hosts
 tar xzvf ovirt-host.tar
+cat > /etc/yum.repos.d/ovirt.repo << EOF
 [ovirt]
 name=ovirt
 baseurl=file:///root/ovirt-host
