@@ -1,0 +1,32 @@
+# install glusterfs on all nodes
+yum -y install glusterfs-server
+systemctl enable glusterd
+systemctl start glusterd
+firewall-cmd --permanent --add-service=glusterfs
+firewall-cmd --reload
+
+cat >> /etc/hosts << EOF
+192.168.100.61 node11
+192.168.100.62 node12
+EOF
+
+ssh-copy-id node11
+ssh-copy-id node12
+
+# config glusterfs brick on all nodes 
+mkfs.xfs /dev/vg100/lv100
+mkdir -p /gluster/brick1
+echo "/dev/vg100/lv100 /gluster/brick1 xfs defaults 0 0" >> /etc/fstab
+mount -a
+
+# config glusterfs volume only one node
+gluster peer probe node12
+gluster peer status
+gluster vol create vol1 replica 2 {node11,node12}:/gluster/brick1
+gluster vol list
+gluster vol start vol1
+gluster vol info
+
+# config client
+mount -t glusterfs node11:/vol1 /mnt
+echo "node11:/vol1 /mnt glusterfs backupvolfile-server=node12,_netdev,defaults 0 0" >> /etc/fstab
