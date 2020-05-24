@@ -30,3 +30,8 @@ gluster vol info
 # config client
 mount -t glusterfs node11:/vol1 /mnt
 echo "node11:/vol1 /mnt glusterfs backupvolfile-server=node12,_netdev,defaults 0 0" >> /etc/fstab
+
+# destroy gluster
+gluster volume stop vol1
+gluster volume delete vol1
+gluster peer detach node12
