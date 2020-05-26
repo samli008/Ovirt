@@ -15,9 +15,10 @@ ssh-copy-id node12
 
 # config glusterfs brick on all nodes 
 mkfs.xfs /dev/vg100/lv100
-mkdir -p /gluster/brick1
-echo "/dev/vg100/lv100 /gluster/brick1 xfs defaults 0 0" >> /etc/fstab
+mkdir /gluster
+echo "/dev/vg100/lv100 /gluster xfs defaults 0 0" >> /etc/fstab
 mount -a
+mkdir -p /gluster/brick1
 
 # config glusterfs volume only one node
 gluster peer probe node12
