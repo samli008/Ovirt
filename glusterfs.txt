@@ -32,6 +32,10 @@ gluster vol info
 mount -t glusterfs node11:/vol1 /mnt
 echo "node11:/vol1 /mnt glusterfs backupvolfile-server=node12,_netdev,defaults 0 0" >> /etc/fstab
 
+# add storage-domain on ovirt
+192.168.100.61:/vol1
+backup-volfile-servers=192.168.100.62:192.168.100.63
+
 # destroy gluster
 gluster volume stop vol1
 gluster volume delete vol1
