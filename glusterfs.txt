@@ -23,7 +23,7 @@ mkdir -p /gluster/brick1
 # config glusterfs volume only one node
 gluster peer probe node12
 gluster peer status
-gluster vol create vol1 replica 2 {node11,node12}:/gluster/brick1
+gluster vol create vol1 replica 3 node{11..13}:/gluster/brick1
 gluster vol list
 gluster vol start vol1
 gluster vol info
