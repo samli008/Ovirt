@@ -1,0 +1,5 @@
+[gluster]
+name=gluster
+baseurl=http://192.168.6.41
+enabled=1
+gpgcheck=0

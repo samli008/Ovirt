@@ -1,0 +1,12 @@
+- name: config local yum
+  copy: src=/root/gluster.repo dest=/etc/yum.repos.d
+
+- name: mkdir_gluster_data_dir
+  file: path={{data_dir}} state=directory mode=755
+- name: gluster_disk_format
+  filesystem: fstype=xfs dev={{data_device}}
+- name: gluster_disk_mount
+  mount: name={{data_dir}} src={{data_device}} fstype=xfs state=mounted opts=rw
+
+- name: mkdir_gluster_client_dir
+  file: path={{client_dir}} state=directory mode=755

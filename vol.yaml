@@ -1,0 +1,9 @@
+- hosts: node1
+  remote_user: root
+
+  tasks:
+    - name: add gluster peer nodes
+      shell: gluster peer probe node2;gluster peer probe node3
+
+    - name: create gluster volume
+      shell: gluster vol create vol1 replica 3 node{1..3}:/gluster/brick1;gluster vol start vol1;gluster vol info

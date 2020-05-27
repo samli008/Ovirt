@@ -1,0 +1,4 @@
+data_device: /dev/sdb
+data_dir: /gluster
+client_dir: /vol
+brick_dir: /gluster/brick1

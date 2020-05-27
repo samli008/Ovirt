@@ -1,0 +1,15 @@
+- hosts: node
+  remote_user: root
+
+  tasks:
+    - name: disable firewalld
+      service: name=firewalld state=stopped enabled=no
+
+    - name: disable selinux
+      lineinfile:
+        dest: /etc/selinux/config
+        regexp: "^SELINUX="
+        line: "SELINUX=disabled"
+  
+    - name: set selinux
+      shell: setenforce 0

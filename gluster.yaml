@@ -1,0 +1,16 @@
+- hosts: node
+  remote_user: root
+  vars_files: 
+    - var.yaml
+
+  tasks:
+    - include: prepare.yaml
+
+    - name: install_data_node
+      yum: name=glusterfs-server
+
+    - name: start service
+      service: name=glusterd state=started enabled=yes
+
+    - name: mkdir_gluster_brick_dir
+      file: path={{brick_dir}} state=directory mode=755
