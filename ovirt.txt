@@ -68,10 +68,14 @@ shibboleth
 
 # management ovirt-engine on hosted-engine node
 hosted-engine --set-maintenance --mode=global
-# Log in to ovirt engine vm
-systemctl stop ovirt-engine
-engine-backup --scope=files --scope=db --mode=backup --file=file_name --log=backup_log_name
-engine-backup --mode=restore --scope=files --scope=db --file=file_name --log=restore_log_name --provision-db --no-restore-permissions
-systemctl start ovirt-engine
+
+# Creating a Full Backup
+engine-backup --scope=all --mode=backup --file=ovirt.bak --log=log1
+
+# Restoring a Backup to a Fresh Installation
+engine-backup --mode=restore --file=ovirt.bak --log=log1 --provision-db --provision-dwh-db --no-restore-permissions
+
+engine-setup
+
 # on hosted-engine node
 hosted-engine --set-maintenance --mode=none
