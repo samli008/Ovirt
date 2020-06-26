@@ -9,6 +9,14 @@ enabled=1
 gpgcheck=0
 EOF
 hostnamectl set-hostname node1.sog.com
+cat >> /etc/hosts << EOF
+192.168.6.91 c01.liyang.com
+192.168.6.92 c01.liyang.com
+192.168.6.64 ovirt.liyang.com
+EOF
+systemctl enable firewalld
+systemctl start firewalld
+
 yum -y install ovirt-engine
 engine-setup --accept-defaults
 
@@ -35,7 +43,7 @@ firewall-cmd --reload
 # deploy Self-hosted engine using command line
 cat >> /etc/hosts << EOF
 192.168.6.61 node1.liyang.com
-192.168.6.63 engine.liyang.com
+192.168.6.64 engine.liyang.com
 EOF
 systemctl enable firewalld
 systemctl start firewalld
