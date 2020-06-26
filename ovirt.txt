@@ -8,7 +8,7 @@ baseurl=file:///root/ovirt
 enabled=1
 gpgcheck=0
 EOF
-hostnamectl set-hostname node1.sog.com
+hostnamectl set-hostname ovirt.liyang.com
 cat >> /etc/hosts << EOF
 192.168.6.91 c01.liyang.com
 192.168.6.92 c01.liyang.com
