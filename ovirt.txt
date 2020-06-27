@@ -19,6 +19,7 @@ systemctl start firewalld
 
 yum -y install ovirt-engine
 engine-setup --accept-defaults
+engine-cleanup
 
 # config ip access ovirt-engine
 vi /etc/ovirt-engine/engine.conf.d/11-setup-sso.conf
