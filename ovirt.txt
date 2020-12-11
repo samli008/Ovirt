@@ -88,3 +88,7 @@ engine-setup
 
 # on hosted-engine node
 hosted-engine --set-maintenance --mode=none
+
+# add user
+ovirt-aaa-jdbc-tool user add sog
+ovirt-aaa-jdbc-tool user password-reset sog
