@@ -89,6 +89,12 @@ engine-setup
 # on hosted-engine node
 hosted-engine --set-maintenance --mode=none
 
-# add user
+# add user on ovirt-engine host
 ovirt-aaa-jdbc-tool user add sog
 ovirt-aaa-jdbc-tool user password-reset sog
+
+# centos7.x vm agent
+mv agent.repo /etc/yum.repos.d/
+yum -y install ovirt-guest-agent-common
+systemctl enable ovirt-guest-agent
+systemctl start ovirt-guest-agent
