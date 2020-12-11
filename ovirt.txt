@@ -90,8 +90,10 @@ engine-setup
 hosted-engine --set-maintenance --mode=none
 
 # add user on ovirt-engine host
-ovirt-aaa-jdbc-tool user add sog
-ovirt-aaa-jdbc-tool user password-reset sog
+ovirt-aaa-jdbc-tool user add liyang \
+    --attribute=firstName=yang \
+    --attribute=lastName=li
+ovirt-aaa-jdbc-tool user password-reset liyang
 
 # centos7.x vm agent
 mv agent.repo /etc/yum.repos.d/
