@@ -100,3 +100,10 @@ mv agent.repo /etc/yum.repos.d/
 yum -y install ovirt-guest-agent-common
 systemctl enable ovirt-guest-agent
 systemctl start ovirt-guest-agent
+
+# join windows AD
+yum -y install ovirt-engine-extension-aaa-ldap-setup
+vi ifcfg-eth0
+DNS1=WINDOWS_AD_IP
+ovirt-engine-extension-aaa-ldap-setup
+systemctl restart ovirt-engine
