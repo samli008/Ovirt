@@ -44,7 +44,7 @@ echo "node11:/vol1 /mnt glusterfs backupvolfile-server=node2,_netdev,defaults 0 
 backup-volfile-servers=192.168.100.62:192.168.100.63
 ```
 ![](./img/glusterfs.jpg)
-## destroy gluster
+## destroy gluster volume
 ```
 gluster volume stop vol1
 gluster volume delete vol1
