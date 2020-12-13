@@ -23,11 +23,13 @@ engine-setup --accept-defaults
 engine-cleanup
 ```
 ## config ip access ovirt-engine
+```
 vi /etc/ovirt-engine/engine.conf.d/11-setup-sso.conf
 SSO_ALTERNATE_ENGINE_FQDNS="192.168.6.63"
 systemctl restart ovirt-engine
-
+```
 ## Installing Cockpit on Enterprise Linux hosts
+```
 tar xzvf ovirt-host.tar
 cat > /etc/yum.repos.d/ovirt.repo << EOF
 [ovirt]
@@ -41,8 +43,9 @@ systemctl enable cockpit.socket
 systemctl start cockpit.socket
 firewall-cmd --permanent --add-service=cockpit
 firewall-cmd --reload
-
-# deploy Self-hosted engine using command line
+```
+## deploy Self-hosted engine using command line
+```
 cat >> /etc/hosts << EOF
 192.168.6.61 node1.liyang.com
 192.168.6.64 engine.liyang.com
@@ -52,59 +55,71 @@ systemctl start firewalld
 yum -y install ovirt-hosted-engine-setup
 rpm -ivh ovirt-engine-appliance-4.3-20200319.1.el7.x86_64.rpm 
 hosted-engine --deploy
-
-# access https://ip:9090 to deploy self-hosted engine with cockpit
+```
+## access https://ip:9090 to deploy self-hosted engine with cockpit
+```
 yum -y install cockpit-ovirt-dashboard
 systemctl enable cockpit.socket
 systemctl start cockpit.socket
 firewall-cmd --permanent --add-service=cockpit
 firewall-cmd --reload
-
-# on nfs share storage host; id vdsm uid 36 gid 36
+```
+## on nfs share storage host; id vdsm uid 36 gid 36
+```
 chown 36:36 /kvm/nfs
 chmod 755 /kvm/nfs
-
-# management hosted-engine
+```
+## management hosted-engine
+```
 hosted-engine --console
 hosted-engine --vm-shutdown
 hosted-engine --vm-start
 hosted-engine --vm-status
 systemctl status -l ovirt-ha-agent
 ovirt-hosted-engine-cleanup
-
-# use virsh list with user passwd cat /etc/pki/vdsm/keys/libvirt_password
+```
+## use virsh list with user passwd cat /etc/pki/vdsm/keys/libvirt_password
+```
 vdsm@ovirt
 shibboleth
-
-# management ovirt-engine on hosted-engine node
+```
+## management ovirt-engine on hosted-engine node
+```
 hosted-engine --set-maintenance --mode=global
-
-# Creating a Full Backup
+```
+## Creating a Full Backup
+```
 engine-backup --scope=all --mode=backup --file=ovirt.bak --log=log1
-
-# Restoring a Backup to a Fresh Installation
+```
+## Restoring a Backup to a Fresh Installation
+```
 engine-backup --mode=restore --file=ovirt.bak --log=log1 --provision-db --provision-dwh-db --no-restore-permissions
 
 engine-setup
-
-# on hosted-engine node
+```
+## on hosted-engine node
+```
 hosted-engine --set-maintenance --mode=none
-
-# add user on ovirt-engine host
+```
+## add user on ovirt-engine host
+```
 ovirt-aaa-jdbc-tool user add liyang \
 --attribute=firstName=yang \
 --attribute=lastName=li
 ovirt-aaa-jdbc-tool user password-reset liyang
-
-# centos7.x vm agent
+```
+## centos7.x vm agent
+```
 mv agent.repo /etc/yum.repos.d/
 yum -y install ovirt-guest-agent-common
 systemctl enable ovirt-guest-agent
 systemctl start ovirt-guest-agent
-
-# join windows AD
+```
+## join windows AD
+```
 yum -y install ovirt-engine-extension-aaa-ldap-setup
 vi ifcfg-eth0
 DNS1=WINDOWS_AD_IP
 ovirt-engine-extension-aaa-ldap-setup
 systemctl restart ovirt-engine
+```
