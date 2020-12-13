@@ -28,6 +28,7 @@ vi /etc/ovirt-engine/engine.conf.d/11-setup-sso.conf
 SSO_ALTERNATE_ENGINE_FQDNS="192.168.6.63"
 systemctl restart ovirt-engine
 ```
+![](./img/ovirt.jpg)
 ## Installing Cockpit on Enterprise Linux hosts
 ```
 tar xzvf ovirt-host.tar
