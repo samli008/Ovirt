@@ -1,4 +1,4 @@
-# install glusterfs on all nodes
+## install glusterfs on all nodes
 yum -y install glusterfs-server gluster-ansible-roles
 systemctl enable glusterd
 systemctl start glusterd
@@ -13,14 +13,14 @@ EOF
 ssh-copy-id node11
 ssh-copy-id node12
 
-# config glusterfs brick on all nodes 
+## config glusterfs brick on all nodes 
 mkfs.xfs /dev/vg100/lv100
 mkdir /gluster
 echo "/dev/vg100/lv100 /gluster xfs defaults 0 0" >> /etc/fstab
 mount -a
 mkdir -p /gluster/brick1
 
-# config glusterfs volume only one node
+## config glusterfs volume only one node
 gluster peer probe node2
 gluster peer probe node3
 gluster peer status
@@ -30,15 +30,15 @@ gluster vol list
 gluster vol start vol1
 gluster vol info
 
-# config client
+## config client
 mount -t glusterfs node1:/vol1 /mnt
 echo "node11:/vol1 /mnt glusterfs backupvolfile-server=node2,_netdev,defaults 0 0" >> /etc/fstab
 
-# add storage-domain on ovirt
+## add storage-domain on ovirt
 192.168.100.61:/vol1
 backup-volfile-servers=192.168.100.62:192.168.100.63
 
-# destroy gluster
+## destroy gluster
 gluster volume stop vol1
 gluster volume delete vol1
 gluster peer detach node12
