@@ -1,4 +1,5 @@
 ## deploy standalone ovirt-engine minimal 4G memory
+```
 yum -y install http://resources.ovirt.org/pub/yum-repo/ovirt-release43.rpm
 tar xzvf ovirt43.tar
 cat > /etc/yum.repos.d/ovirt.repo << EOF
@@ -20,7 +21,7 @@ systemctl start firewalld
 yum -y install ovirt-engine
 engine-setup --accept-defaults
 engine-cleanup
-
+```
 ## config ip access ovirt-engine
 vi /etc/ovirt-engine/engine.conf.d/11-setup-sso.conf
 SSO_ALTERNATE_ENGINE_FQDNS="192.168.6.63"
