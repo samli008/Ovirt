@@ -1,4 +1,4 @@
-##deploy standalone ovirt-engine minimal 4G memory
+## deploy standalone ovirt-engine minimal 4G memory
 yum -y install http://resources.ovirt.org/pub/yum-repo/ovirt-release43.rpm
 tar xzvf ovirt43.tar
 cat > /etc/yum.repos.d/ovirt.repo << EOF
