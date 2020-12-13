@@ -123,4 +123,4 @@ DNS1=WINDOWS_AD_IP
 ovirt-engine-extension-aaa-ldap-setup
 systemctl restart ovirt-engine
 ```
-![ad](../img/ad.jpg)
+![ad](./img/ad.jpg)
