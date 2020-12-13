@@ -1,6 +1,6 @@
 ## install glusterfs on all nodes
 ```
-yum -y install glusterfs-server gluster-ansible-roles
+yum -y install glusterfs-server
 systemctl enable glusterd
 systemctl start glusterd
 firewall-cmd --permanent --add-service=glusterfs
