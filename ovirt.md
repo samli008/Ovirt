@@ -140,5 +140,5 @@ LIBVIRTD_ARGS="--listen"
 
 systemctl restart libvirtd
 
-virsh -r -c 'qemu+tcp://192.168.0.201/system' list --all 
+virsh -r -c 'qemu+tcp://192.168.6.62/system' list --all 
 ```
