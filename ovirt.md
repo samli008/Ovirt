@@ -125,3 +125,20 @@ ovirt-engine-extension-aaa-ldap-setup
 systemctl restart ovirt-engine
 ```
 ![ad](./img/ad.jpg)
+## Ovirt import vm from KVM
+```
+cat /etc/libvirt/libvirtd.conf 
+listen_tls = 0
+listen_tcp = 1
+tcp_port = "16509"
+listen_addr = "0.0.0.0"
+auth_tcp = "none"
+
+cat /etc/sysconfig/libvirtd
+LIBVIRTD_CONFIG=/etc/libvirt/libvirtd.conf
+LIBVIRTD_ARGS="--listen"
+
+systemctl restart libvirtd
+
+virsh -r -c 'qemu+tcp://192.168.0.201/system' list --all 
+```
