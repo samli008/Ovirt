@@ -45,6 +45,15 @@ systemctl start cockpit.socket
 firewall-cmd --permanent --add-service=cockpit
 firewall-cmd --reload
 ```
+## enable nested virtualization
+```
+cat > /etc/modprobe.d/kvm-intel.conf << EOF
+options kvm_intel nested=1
+EOF
+modprobe -r kvm_intel
+modprobe kvm_intel
+cat /sys/module/kvm_intel/parameters/nested
+```
 ## deploy Self-hosted engine using command line
 ```
 cat >> /etc/hosts << EOF
