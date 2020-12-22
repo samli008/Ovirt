@@ -60,8 +60,18 @@ cat >> /etc/hosts << EOF
 192.168.6.61 node1.liyang.com
 192.168.6.64 engine.liyang.com
 EOF
+
+cat > /etc/yum.repos.d/ovirt.repo << EOF
+[ovirt]
+name=ovirt
+baseurl=file:///root/ovirt-host
+enabled=1
+gpgcheck=0
+EOF
+
 systemctl enable firewalld
 systemctl start firewalld
+
 yum -y install ovirt-hosted-engine-setup
 rpm -ivh ovirt-engine-appliance-4.3-20200319.1.el7.x86_64.rpm 
 hosted-engine --deploy
