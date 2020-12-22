@@ -74,7 +74,7 @@ systemctl start firewalld
 
 yum -y install ovirt-hosted-engine-setup
 rpm -ivh ovirt-engine-appliance-4.3-20200319.1.el7.x86_64.rpm 
-hosted-engine --deploy
+***hosted-engine --deploy***
 ```
 ## access https://ip:9090 to deploy self-hosted engine with cockpit
 ```
