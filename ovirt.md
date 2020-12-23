@@ -95,6 +95,9 @@ hosted-engine --console
 hosted-engine --vm-shutdown
 hosted-engine --vm-start
 hosted-engine --vm-status
+hosted-engine --vm-poweroff
+hosted-engine --disconnect-storage
+hosted-engine --connect-storage
 systemctl status -l ovirt-ha-agent
 ovirt-hosted-engine-cleanup
 ```
