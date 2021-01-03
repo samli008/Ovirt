@@ -1,3 +1,12 @@
+## docker iptables setup
+```
+cat > /etc/docker/daemon.json << EOF
+{
+  "insecure-registries": ["harbor.liyang.com"],
+  "iptables": false
+}
+EOF
+```
 ## firewall setup
 ```
 firewall-cmd --zone=public --add-port=6789/tcp --permanent
