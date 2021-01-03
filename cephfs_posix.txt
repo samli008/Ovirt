@@ -11,3 +11,12 @@ path: 192.168.100.61:/
 VFS type: ceph
 mountpoint option: name=admin,secret=AQDtEfFf7eEEKxAAbyL2hLnMIzIZMKtXsbWf0g==
 ```
+## ovirt multipath.conf setup
+```
+blacklist{
+devnode "^sdc"
+}
+
+systemctl reload multipathd
+multipath -ll
+```
