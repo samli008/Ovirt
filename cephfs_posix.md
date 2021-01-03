@@ -7,7 +7,7 @@ cat > /etc/docker/daemon.json << EOF
 }
 EOF
 ```
-## firewall setup
+## cephfs firewall setup
 ```
 firewall-cmd --zone=public --add-port=6789/tcp --permanent
 firewall-cmd --zone=public --add-port=6800-7100/tcp --permanent
