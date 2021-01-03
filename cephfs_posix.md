@@ -29,3 +29,8 @@ devnode "^sdc"
 systemctl reload multipathd
 multipath -ll
 ```
+## cephfs mount
+```
+ceph-authtool -p /etc/ceph/ceph.client.admin.keyring > admin.key
+mount -t ceph node11:6789:/ /mnt -o name=admin,secretfile=admin.key
+```
