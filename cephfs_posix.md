@@ -6,6 +6,8 @@ cat > /etc/docker/daemon.json << EOF
   "iptables": false
 }
 EOF
+systemctl daemon-reload
+systemctl restart docker
 ```
 ## cephfs firewall setup
 ```
