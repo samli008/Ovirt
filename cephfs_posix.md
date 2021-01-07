@@ -58,3 +58,11 @@ ms_async_transport_type = rdma
 ms_async_rdma_public_device_name = ib1
 ms_async_rdma_cluster_device_name = ib1
 ```
+## remove osd
+```
+docker rm -f sdd
+ceph osd out 1
+ceph osd crush remove osd.1
+ceph auth del osd.1
+ceph osd rm osd.1
+```
