@@ -66,3 +66,17 @@ ceph osd crush remove osd.1
 ceph auth del osd.1
 ceph osd rm osd.1
 ```
+## ceph fs pool set
+```
+ceph osd pool set cephfs_data size 2 
+ceph osd pool set cephfs_data pg_num 150
+ceph osd pool set cephfs_data pgp_num 150
+ceph fs ls
+ceph mds stat
+```
+## delete ceph fs,stop all mds first
+```
+ceph fs rm cephfs --yes-i-really-mean-it
+ceph osd pool delete cephfs_metadata cephfs_metadata --yes-i-really-really-mean-it
+ceph osd pool delete cephfs_data cephfs_data --yes-i-really-really-mean-it
+```
